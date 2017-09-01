@@ -71,7 +71,7 @@ router.post("/signup", function(req, res) {
 });
 
 router.get("/feed", isAuthenticated, function(req, res) {
-  // when writing the find for posts make sure to sort by created date and DESCENDING
+  // when writing the find for POSTS make sure to sort by created date and DESCENDING
   models.User.find({})
     .then(function(data) {
       currentUser = req.user;
@@ -81,6 +81,19 @@ router.get("/feed", isAuthenticated, function(req, res) {
       console.log(err);
       next(err);
     });
+});
+
+router.post("/new_post", isAuthenticated, function(req, res) {
+  console.log("req.user.id: ", req.user.id);
+  console.log("req.body.message: ", req.body.message);
+
+  models.Post.create({
+    userId: req.user.id,
+    message: req.body.message
+  })
+  .then(function(data) {
+    res.redirect("/feed");
+  })
 });
 
 router.get("/logout", function(req, res) {

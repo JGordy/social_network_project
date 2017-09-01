@@ -1,8 +1,25 @@
 <header class="header">
-  <h4 id="add_post"><a href="/new_post/{{id}}">Add Post</a></h4>
-  <h1>Cool social media name</h1>
+  <h4 id="add_post"></h4>
+  <h1>Really cool social media name that will forever be ingrained in your memory</h1>
   <div class="welcome_logout">
     <h4 id="welcome">Welcome, {{username}}</h4>
     <p><a id="logout_button" href="/logout">Log Out</a></p>
   </div>
 </header>
+<div class="main_container">
+  <form class="post_message" action="/new_post" method="post">
+    <h3>{{username}}</h3>
+    <textarea name="message" rows="14" cols="35" placeholder="What would you like to say?"></textarea>
+    <button type="submit" name="submit">Post</button>
+  </form>
+  {{#posts}}
+  <div class="post_container">
+    <p>{{.}}</p>
+  </div>
+  {{/posts}}
+  {{^posts}}
+  <div class="post_container">
+    <p>You have no friends...or no news, but probably no friends.</p>
+  </div>
+  {{/posts}}
+</div>

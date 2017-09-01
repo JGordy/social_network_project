@@ -1,3 +1,7 @@
+
+/*font-family: 'Gloria Hallelujah', cursive;*/
+/*font-family: 'Philosopher', sans-serif;*/
+
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +11,13 @@
     font-family: sans-serif;
  }
 
+ .container {
+
+ }
+
  h1 {
-   color: aliceblue;
+  color: aliceblue;
+  text-align: center;
  }
 
 .header {
@@ -22,8 +31,8 @@
 }
 
 #add_post a {
-  border-bottom: 4px solid aliceblue;
-  border-radius: 15px;
+  border: 2px solid aliceblue;
+  border-radius: 20px;
   color: aliceblue;
   font-size: 18px;
   margin-left: 15px;
@@ -32,16 +41,16 @@
 }
 
 #add_post a:hover {
-  border-bottom: 4px solid gray;
-  border-radius: 15px;
+  border: 2px solid gray;
+  border-radius: 20px;
   background-color: aliceblue;
-  color: deepskyblue;
+  color: #39D79F;
 }
 
 #welcome {
-  border-bottom: 4px solid deepskyblue;
-  border-radius: 15px;
+  border-bottom: 2px solid #39D79F;
   color: gray;
+  font-family: 'Gloria Hallelujah', cursive;
   padding: 5px;
 }
 
@@ -55,12 +64,85 @@
   text-decoration: none;
 }
 
+.main_container {
+  padding-top: 150px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.post_message {
+  background-color: #fff;
+  border: 2px solid gray;
+  border-radius: 7px;
+  display: flex;
+  flex-basis: 25%;
+  flex-direction: column;
+  height: 350px;
+  justify-content: space-between;
+  /*padding: 10px;*/
+}
+
+.post_message h3 {
+  background-color: #16262B;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #39D79F;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-style: italic;
+  padding: 10px 15px;
+}
+
+.post_message textarea {
+  border: none;
+  border-top: solid 4px #39D79F;
+  border-bottom: solid 4px #39D79F;
+  font-size: 16px;
+  padding: 15px 8px;
+  resize: none;
+  text-align: center;
+}
+
+input.middle:focus {
+
+}
+
+.post_message textarea:focus {
+  caret-color: #39D79F;
+  font-size: 16px;
+  outline-width: 0;
+}
+
+.post_message button {
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 5px;
+  padding: 5px 10px;
+  text-shadow: 0px 0px 1px #39D79F;
+  width: 40%;
+}
+
+.post_container {
+  flex-basis: 60%;
+  text-align: center;
+}
+
+.post_container p {
+  color: gray;
+  font-size: 20px;
+}
+
 /***************************************
       signup/login page styling
 ***************************************/
 
 header {
-  background-image: linear-gradient(to right, deepskyblue 40%, aliceblue);
+  background-image: linear-gradient(to right, #39D79F 40%, aliceblue);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   padding: 15px 0px;
   position: fixed;
@@ -71,15 +153,15 @@ header {
 .signup_container {
   display: flex;
   justify-content: center;
-  margin: 50px auto;
-  padding: 20px
+  margin: 0px auto;
+  padding: 150px;
   width: 70%;
 }
 
 .signup_container input {
   border: none;
-  border-bottom: 3px solid deepskyblue;
-  border-radius: 5px;
+  border-bottom: 3px solid #39D79F;
+  border-top-right-radius: 5px;
   font-size: 24px;
   height: 20px;
   margin: 10px 0px;
@@ -88,7 +170,7 @@ header {
 
 .signup_container button {
   align-self: center;
-  background-color: deepskyblue;
+  background-color: #39D79F;
   border: none;
   border-radius: 5px;
   font-size: 18px;

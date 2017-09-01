@@ -12,6 +12,14 @@ module.exports = {
         type: Sequelize.STRING(140),
         allowNull: false
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        }
+      },
       likes: {
         type: Sequelize.INTEGER,
         default: 0

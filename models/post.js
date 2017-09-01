@@ -10,9 +10,11 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: "userId"
     })
 //linking Post to Like
-    // Post.hasOne(models.User, {
-    //   foreignKey: "userId"
-    // })
+    Post.belongsToMany(models.User, {
+      foreignKey: "postId",
+      otherKey: "userId",
+      through: "Likes"
+    })
   };
 
 
