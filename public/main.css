@@ -4,10 +4,59 @@
 }
  body {
     background-color: aliceblue;
+    font-family: sans-serif;
  }
+
+header {
+  margin-top: 20px;
+  text-align: center;
+}
 
 .container {
   display: flex;
   flex-flow: row wrap;
   margin: 20px auto;
+}
+
+.signup_container {
+  display: flex;
+  margin: 50px auto;
+  padding: 20px
+  width: 70%;
+}
+
+.signup_container input {
+  border: none;
+  border-bottom: 3px solid deepskyblue;
+  border-radius: 5px;
+  font-size: 24px;
+  height: 20px;
+  margin: 10px 0px;
+  padding: 7px;
+}
+
+.signup_container button {
+  align-self: center;
+  background-color: deepskyblue;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 10px;
+  text-shadow: 2px 2px 2px gray;
+  width: 50%;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 40px;
+}
+
+.signup {
+  border-left: 3px solid gray;
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
 }
