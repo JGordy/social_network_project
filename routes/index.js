@@ -15,14 +15,14 @@ const isAuthenticated = function (req, res, next) {
   }
 
 router.get("/", function(req, res) {
-console.log("LAAWWWG");
+
   res.render("signup", {
       messages: res.locals.getMessages()
   });
 });
 
 router.post('/', passport.authenticate('local', {
-    successRedirect: '/user',
+    successRedirect: '/feed',
     failureRedirect: '/',
     failureFlash: true
 }));
@@ -56,7 +56,7 @@ router.post("/signup", function(req, res) {
 
     models.User.create(newUser)
     .then(function() {
-      console.log("running create function");
+
       res.redirect("/");
     })
     .catch(function(error) {
@@ -70,12 +70,12 @@ router.post("/signup", function(req, res) {
   }
 });
 
-router.get("/user", isAuthenticated, function(req, res) {
+router.get("/feed", isAuthenticated, function(req, res) {
   // when writing the find for posts make sure to sort by created date and DESCENDING
   models.User.find({})
     .then(function(data) {
       currentUser = req.user;
-      res.render("user", {users: data, username: req.user.username})
+      res.render("feed", {users: data, username: req.user.username})
     })
     .catch(function(err) {
       console.log(err);
