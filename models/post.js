@@ -7,13 +7,13 @@ module.exports = function(sequelize, DataTypes) {
 // linking Post to User. This is the source key
   Post.associate = function(models) {
     Post.belongsTo(models.User, {
+      as: "Users",
       foreignKey: "userId"
     })
 //linking Post to Like
-    Post.belongsToMany(models.User, {
-      foreignKey: "postId",
-      otherKey: "userId",
-      through: "Likes"
+    Post.hasMany(models.Like, {
+      as: "Likes",
+      foreignKey: "postId"
     })
   };
 

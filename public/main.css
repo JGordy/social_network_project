@@ -7,9 +7,26 @@
   padding: 0;
 }
  body {
-    background-color: aliceblue;
-    font-family: sans-serif;
+  color: #16262B;
+  background-color: aliceblue;
+  font-family: sans-serif;
  }
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
+.material-icons {
+  color: #39D79F;
+}
+
+.thumbs {
+  background-color: #16262B;
+  color: white;
+  padding: 15px;
+}
 
  .container {
 
@@ -17,6 +34,8 @@
 
  h1 {
   color: aliceblue;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 42px;
   text-align: center;
  }
 
@@ -24,6 +43,10 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.header h1 {
+  margin-left: 515px;
 }
 
 .welcome_logout {
@@ -67,6 +90,7 @@
 .main_container {
   padding-top: 150px;
   display: flex;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
@@ -74,14 +98,15 @@
 
 .post_message {
   background-color: #fff;
-  border: 2px solid gray;
   border-radius: 7px;
   display: flex;
   flex-basis: 25%;
   flex-direction: column;
   height: 350px;
   justify-content: space-between;
-  /*padding: 10px;*/
+  margin-top: 20px;
+  /*display: sticky;
+  top: 350px;*/
 }
 
 .post_message h3 {
@@ -102,10 +127,6 @@
   padding: 15px 8px;
   resize: none;
   text-align: center;
-}
-
-input.middle:focus {
-
 }
 
 .post_message textarea:focus {
@@ -129,12 +150,50 @@ input.middle:focus {
 
 .post_container {
   flex-basis: 60%;
+  margin-left: 25px;
   text-align: center;
 }
 
 .post_container p {
   color: gray;
   font-size: 20px;
+}
+
+.single_post {
+  background-color: #fff;
+  border-left: 4px solid #16262B;
+  border-radius: 2px;
+  /*height: 85px;*/
+  margin-bottom: 25px;
+  text-align: justify;
+}
+
+.single_post h4, .single_post p {
+  margin-left: 10px;
+}
+
+.single_post h4 {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.message {
+  margin: 10px 10px 10px 0px;
+}
+
+.name_likes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+}
+
+.single_post .date {
+font-size: 12px;
+font-weight: lighter;
+font-style: italic;
 }
 
 /***************************************
@@ -144,7 +203,7 @@ input.middle:focus {
 header {
   background-image: linear-gradient(to right, #39D79F 40%, aliceblue);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  padding: 15px 0px;
+  padding-bottom: 10px;
   position: fixed;
   text-align: center;
   width: 100%;
@@ -162,21 +221,26 @@ header {
   border: none;
   border-bottom: 3px solid #39D79F;
   border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   font-size: 24px;
   height: 20px;
   margin: 10px 0px;
   padding: 7px;
 }
 
+.signup_container input::placeholder {
+  color: darkgray;
+}
+
 .signup_container button {
   align-self: center;
-  background-color: #39D79F;
+  background-color: #16262B;
   border: none;
   border-radius: 5px;
+  color: white;
   font-size: 18px;
   margin-top: 10px;
   padding: 10px;
-  text-shadow: 2px 2px 2px gray;
   width: 50%;
 }
 

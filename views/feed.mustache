@@ -1,22 +1,44 @@
 <header class="header">
-  <h4 id="add_post"></h4>
-  <h1>Really cool social media name that will forever be ingrained in your memory</h1>
+  <h1>Jibberjab</h1>
   <div class="welcome_logout">
-    <h4 id="welcome">Welcome, {{username}}</h4>
+    <h4 id="welcome">Welcome, {{currentUser}}</h4>
     <p><a id="logout_button" href="/logout">Log Out</a></p>
   </div>
 </header>
 <div class="main_container">
   <form class="post_message" action="/new_post" method="post">
-    <h3>{{username}}</h3>
+    <h3>{{currentUser}}</h3>
     <textarea name="message" rows="14" cols="35" placeholder="What would you like to say?"></textarea>
     <button type="submit" name="submit">Post</button>
   </form>
-  {{#posts}}
   <div class="post_container">
-    <p>{{.}}</p>
-  </div>
+  {{#posts}}
+  {{#message}}
+    <div class="single_post">
+      {{#likes}}
+      <div class="name_likes">
+        <h4>{{Users.name}}</h4>
+        <div class="likes">
+          <h5>{{.}} likes</h5>
+          <a href="/like"><i class="material-icons">thumb_up</i></a>
+        </div>
+      </div>
+      {{/likes}}
+      {{^likes}}
+      <div class="name_likes">
+        <h4>{{Users.name}}</h4>
+        <div class="likes">
+          <h5>No likes yet.</h5>
+          <a href="/like/{{id}}"><i class="material-icons thumbs">thumb_up</i></a>
+        </div>
+      </div>
+      {{/likes}}
+      <p class="message">{{.}}</p>
+      <p class="date">{{createdAt}}</p>
+    </div>
+  {{/message}}
   {{/posts}}
+</div>
   {{^posts}}
   <div class="post_container">
     <p>You have no friends...or no news, but probably no friends.</p>

@@ -27,7 +27,7 @@ router.post('/', passport.authenticate('local', {
     failureFlash: true
 }));
 
-router.get("/signup", function(req, res) {
+router.get("/signup", isAuthenticated, function(req, res) {
   res.render("signup");
 });
 
@@ -72,10 +72,20 @@ router.post("/signup", function(req, res) {
 
 router.get("/feed", isAuthenticated, function(req, res) {
   // when writing the find for POSTS make sure to sort by created date and DESCENDING
-  models.User.find({})
+  models.Post.findAll({
+    order: [['createdAt', 'DESC']],
+    include: [
+      {model: models.User, as: 'Users'},
+      {model: models.Like, as: 'Likes'}
+    ]
+})
     .then(function(data) {
-      currentUser = req.user;
-      res.render("feed", {users: data, username: req.user.username})
+      console.log(data[0].userId);
+      // if (req.user.username === ) {
+      //
+      // }
+
+      res.render("feed", {posts: data, currentUser: req.user.username})
     })
     .catch(function(err) {
       console.log(err);
@@ -84,8 +94,6 @@ router.get("/feed", isAuthenticated, function(req, res) {
 });
 
 router.post("/new_post", isAuthenticated, function(req, res) {
-  console.log("req.user.id: ", req.user.id);
-  console.log("req.body.message: ", req.body.message);
 
   models.Post.create({
     userId: req.user.id,
@@ -95,6 +103,40 @@ router.post("/new_post", isAuthenticated, function(req, res) {
     res.redirect("/feed");
   })
 });
+
+
+
+
+
+const getPost = function (req, res, next) {
+    models.Post.findById(req.params.Id).then(function (post) {
+        if (post) {
+            req.post = post;
+            next();
+        } else {
+            res.status(404).send('Not found.');
+        }
+    })
+}
+
+
+router.get("/like/:id", isAuthenticated, getPost, function(req, res) {
+
+  req.post.likes += 1;
+  req.post.save().then(function () {
+      res.redirect(req.link.url);
+  });
+
+  models.Like.create({
+    userId: req.user.id,
+    postId: req.params.id
+  })
+  .then(function(data) {
+
+    res.redirect("/feed");
+  })
+});
+
 
 router.get("/logout", function(req, res) {
   req.logout();
