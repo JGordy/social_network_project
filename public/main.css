@@ -169,9 +169,15 @@ textarea:focus {
   background-color: #fff;
   border-left: 4px solid #16262B;
   border-radius: 2px;
-  /*height: 85px;*/
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
   margin-bottom: 25px;
   text-align: justify;
+}
+
+.single_post a {
+  text-decoration: none;
 }
 
 .single_post h4, .single_post p {
@@ -180,20 +186,27 @@ textarea:focus {
 
 .single_post h4 {
   font-family: 'Gloria Hallelujah', cursive;
+  color: #16262B;
 }
 
 .message {
   margin: 10px 10px 10px 0px;
 }
 
-.name_likes {
-  display: flex;
-  justify-content: space-between;
+.name_message {
+  flex: 1 1 50%;
 }
 
-.likes {
+.likes_buttons {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.likes_buttons a {
+  margin-left: 27px;
 }
 
 .single_post .date {
@@ -262,4 +275,11 @@ header {
   display: flex;
   flex-direction: column;
   padding-left: 40px;
+}
+/******************************
+   single post page styling
+******************************/
+
+.single_post_page {
+padding-top: 150px;
 }

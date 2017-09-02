@@ -1,0 +1,24 @@
+<header class="header">
+  <h1>Jibberjab</h1>
+  <div class="welcome_logout">
+    <h4 id="welcome">Welcome, {{currentUser}}</h4>
+    <p><a id="logout_button" href="/logout">Log Out</a></p>
+  </div>
+</header>
+<div class="single_post_page">
+  {{#post}}
+  <div class="the_post">
+    <h4>{{Users.name}}</h4>
+    <p class="message">{{message}}</p>
+    <p class="date">{{createdAt}}</p>
+  </div>
+  <div class="liked_by">
+    <h2>Liked By</h2>
+    {{#Likes}}
+    {{#userId}}
+    <p>{{.}}</p>
+    {{/userId}}
+    {{/Likes}}
+  </div>
+  {{/post}}
+</div>

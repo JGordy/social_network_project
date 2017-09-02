@@ -15,26 +15,15 @@
   {{#posts}}
   {{#message}}
     <div class="single_post">
-      {{#likes}}
-      <div class="name_likes">
+      <div class="name_message"><a href="/see_post/{{id}}">
         <h4>{{Users.name}}</h4>
-        <div class="likes">
-          <h5>{{.}} likes</h5>
-          <a href="/like/{{id}}"><i class="material-icons thumbs">thumb_up</i></a>
-        </div>
+        <p class="message">{{.}}</p>
+        <p class="date">{{createdAt}}</p>
+      </a></div>
+      <div class="likes_buttons">
+        <a href="/like/{{id}}"><i class="material-icons thumbs">thumb_up</i></a>
+        <h5>{{Likes.length}} likes</h5>
       </div>
-      {{/likes}}
-      {{^likes}}
-      <div class="name_likes">
-        <h4>{{Users.name}}</h4>
-        <div class="likes">
-          <h5>No likes yet.</h5>
-          <a href="/like/{{id}}"><i class="material-icons thumbs">thumb_up</i></a>
-        </div>
-      </div>
-      {{/likes}}
-      <p class="message">{{.}}</p>
-      <p class="date">{{createdAt}}</p>
     </div>
   {{/message}}
   {{/posts}}

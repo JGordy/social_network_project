@@ -71,7 +71,6 @@ router.post("/signup", function(req, res) {
 });
 
 router.get("/feed", isAuthenticated, function(req, res) {
-  // when writing the find for POSTS make sure to sort by created date and DESCENDING
   models.Post.findAll({
     order: [['createdAt', 'DESC']],
     include: [
@@ -94,11 +93,11 @@ router.get("/feed", isAuthenticated, function(req, res) {
 });
 
 router.post("/new_post", isAuthenticated, function(req, res) {
-
+console.log("Likes.length: ", models.Like.length);
   models.Post.create({
     userId: req.user.id,
     message: req.body.message,
-    likes: 0
+    likes: models.Like.length
   })
   .then(function(data) {
     res.redirect("/feed");
@@ -110,9 +109,15 @@ router.post("/new_post", isAuthenticated, function(req, res) {
 
 
 const getPost = function (req, res, next) {
-    models.Post.findOne({where: {id: req.params.id}})
+    models.Post.findOne({
+      where: {id: req.params.id},
+      include: [
+        {model: models.User, as: 'Users'},
+        {model: models.Like, as: 'Likes'}
+      ]
+    })
     .then(function (data) {
-      console.log("dataaaaaaaaaa: ", data);
+
         if (data) {
             req.post = data;
             next();
@@ -120,25 +125,38 @@ const getPost = function (req, res, next) {
             res.status(404).send('Not found.');
         }
     })
-}
+};
 
 
 router.get("/like/:id", isAuthenticated, getPost, function(req, res) {
-console.log("req.post.id FIRST : ", req.post.dataValues);
-  req.post.likes += 1;
-  console.log("req.posts.likes: ", req.post.likes);
-  req.post.save().then(function () {
-      res.redirect("/feed");
-  });
 
-  // models.Like.create({
-  //   userId: req.user.id,
-  //   postId: req.params.id
-  // })
-  // .then(function(data) {
-  //
-  //   res.redirect("/feed");
-  // })
+  models.Like.create({
+    userId: req.user.id,
+    postId: req.params.id
+  })
+  .then(function(data) {
+
+    res.redirect("/feed");
+  })
+});
+
+router.get("/see_post/:id", isAuthenticated, function(req, res) {
+  console.log("req.params.id: ", req.params.id);
+  models.Post.findOne({
+    where: {id: req.params.id},
+    include: [
+      {model: models.User, as: 'Users'},
+      {model: models.Like, as: 'Likes'}
+    ]
+  })
+  .then(function(data) {
+    console.log("ddddaaaaattttaaaaa: ", data.Likes);
+    res.render("single_post", {post: data, currentUser: req.user.username});
+  })
+  .catch(function(err) {
+    console.log(err);
+    res.redirect("/feed");
+  })
 });
 
 
