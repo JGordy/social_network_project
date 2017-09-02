@@ -80,7 +80,7 @@ router.get("/feed", isAuthenticated, function(req, res) {
     ]
 })
     .then(function(data) {
-      console.log(data[0].userId);
+      // console.log(data[0].userId);
       // if (req.user.username === ) {
       //
       // }
@@ -97,7 +97,8 @@ router.post("/new_post", isAuthenticated, function(req, res) {
 
   models.Post.create({
     userId: req.user.id,
-    message: req.body.message
+    message: req.body.message,
+    likes: 0
   })
   .then(function(data) {
     res.redirect("/feed");
@@ -109,9 +110,11 @@ router.post("/new_post", isAuthenticated, function(req, res) {
 
 
 const getPost = function (req, res, next) {
-    models.Post.findById(req.params.Id).then(function (post) {
-        if (post) {
-            req.post = post;
+    models.Post.findOne({where: {id: req.params.id}})
+    .then(function (data) {
+      console.log("dataaaaaaaaaa: ", data);
+        if (data) {
+            req.post = data;
             next();
         } else {
             res.status(404).send('Not found.');
@@ -121,20 +124,21 @@ const getPost = function (req, res, next) {
 
 
 router.get("/like/:id", isAuthenticated, getPost, function(req, res) {
-
+console.log("req.post.id FIRST : ", req.post.dataValues);
   req.post.likes += 1;
+  console.log("req.posts.likes: ", req.post.likes);
   req.post.save().then(function () {
-      res.redirect(req.link.url);
+      res.redirect("/feed");
   });
 
-  models.Like.create({
-    userId: req.user.id,
-    postId: req.params.id
-  })
-  .then(function(data) {
-
-    res.redirect("/feed");
-  })
+  // models.Like.create({
+  //   userId: req.user.id,
+  //   postId: req.params.id
+  // })
+  // .then(function(data) {
+  //
+  //   res.redirect("/feed");
+  // })
 });
 
 

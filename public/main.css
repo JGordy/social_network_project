@@ -28,6 +28,12 @@ textarea:focus {
   padding: 15px;
 }
 
+.thumbs:visited{
+  background-color: #16262B;
+  color: #39D79F;
+  padding: 15px;
+}
+
  .container {
 
  }
