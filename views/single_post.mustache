@@ -6,19 +6,20 @@
   </div>
 </header>
 <div class="single_post_page">
-  {{#post}}
   <div class="the_post">
-    <h4>{{Users.name}}</h4>
-    <p class="message">{{message}}</p>
-    <p class="date">{{createdAt}}</p>
+    <h4 class="post_name">{{#userData}}{{#User}}{{name}}{{/User}}{{/userData}}</h4>
+    <p class="message">{{#userData}}{{message}}{{/userData}}</p>
+<p class="date">{{#Posts}}{{createdAt}}{{/Posts}}</p>
   </div>
   <div class="liked_by">
     <h2>Liked By</h2>
-    {{#Likes}}
-    {{#userId}}
+    {{#data}}
+    {{#Likes.name}}
+    {{.}}
+    {{/Likes.name}}
+    {{/data}}
+    {{#likeNames}}
     <p>{{.}}</p>
-    {{/userId}}
-    {{/Likes}}
+    {{/likeNames}}
   </div>
-  {{/post}}
 </div>

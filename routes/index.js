@@ -140,8 +140,13 @@ router.get("/like/:id", isAuthenticated, getPost, function(req, res) {
   })
 });
 
-router.get("/see_post/:id", isAuthenticated, function(req, res) {
-  console.log("req.params.id: ", req.params.id);
+
+
+router.get("/see_post/:userId/:id", isAuthenticated, function(req, res) {
+
+  let likedById = [];
+  let likedByName = [];
+
   models.Post.findOne({
     where: {id: req.params.id},
     include: [
@@ -150,11 +155,49 @@ router.get("/see_post/:id", isAuthenticated, function(req, res) {
     ]
   })
   .then(function(data) {
-    console.log("ddddaaaaattttaaaaa: ", data.Likes);
-    res.render("single_post", {post: data, currentUser: req.user.username});
+    let postId = data.id
+    let dataLikes = data.Likes;
+    for (var i = 0; i < dataLikes.length; i++) {
+      likedById.push(data.Likes[i].userId);
+    };
+
+    models.User.findAll({
+      where: {id: likedById}
+    })
+      .then(function(data) {
+        let userData = data;
+        userData.forEach(function(entry) {
+          likedByName.push(entry.name)
+        })
+        console.log(postId);
+        if (req.params.userId == req.user.id) {
+          res.render("my_single_post", {userData: userData, postId: postId,  data: data, likeNames: likedByName, currentUser: req.user.username});
+        } else {
+          res.render("single_post", {userData: userData, postId: postId,  data: data, likeNames: likedByName, currentUser: req.user.username});
+        }
+      })
+      .catch(function(err) {
+        console.log(err);
+        res.redirect("/feed")
+      });
   })
   .catch(function(err) {
     console.log(err);
+    res.redirect("/feed");
+  })
+});
+
+router.get("/remove/:postId", isAuthenticated, function(req, res) {
+console.log(req.params.postId);
+  models.Post.destroy({
+    where: {
+      id: req.params.postId
+    }
+  })
+  .then(function(data) {
+    res.redirect("/feed");
+  })
+  .catch(function(err) {
     res.redirect("/feed");
   })
 });

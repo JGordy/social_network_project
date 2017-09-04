@@ -6,20 +6,23 @@
   </div>
 </header>
 <div class="single_post_page">
-  {{#post}}
-  <div class="the_post">
-    <div class="name_message">
-      <h4>{{Users.name}}</h4>
-      <p class="message">{{message}}</p>
-      <p class="date">{{createdAt}}</p>
+  <div class="edit_the_post">
+    <div class="inside_post">
+      <h4 class="post_name">{{#data}}{{User}}{{/data}}</h4>
+      <p class="message">{{#data}}{{message}}{{/data}}</p>
+      <p class="date">{{#data}}{{createdAt}}{{/data}}</p>
     </div>
-    <a href="/remove/{{id}}"><i class="material-icons">delete_forever</i></a>
+    <a href="/remove/{{postId}}"><i class="material-icons delete">delete_forever</i></a>
   </div>
   <div class="liked_by">
     <h2>Liked By</h2>
-    {{}}
+    {{#data}}
+    {{#Likes.name}}
+    {{.}}
+    {{/Likes.name}}
+    {{/data}}
+    {{#likeNames}}
     <p>{{.}}</p>
-    {{}}
+    {{/likeNames}}
   </div>
-  {{/post}}
 </div>

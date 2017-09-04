@@ -39,6 +39,7 @@ textarea:focus {
  }
 
  h1 {
+  text-shadow: 2px 2px 0px #16262B;
   color: aliceblue;
   font-family: 'Gloria Hallelujah', cursive;
   font-size: 42px;
@@ -281,5 +282,45 @@ header {
 ******************************/
 
 .single_post_page {
-padding-top: 150px;
+  background-color: #fff;
+  height: 475px;
+  margin: 0px auto;
+  padding-top: 150px;
+  width: 80%;
+}
+
+.edit_the_post {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post_name {
+  color: #16262B;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 24px;
+}
+
+.message {
+  color: gray;
+  font-size: 32px;
+}
+
+.date {
+  color: gray;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.delete {
+  background-color: red;
+  color: white;
+  padding: 15px;
+}
+
+.liked_by {
+  margin: 30px 0px 20px 0px;
+}
+
+.liked_by p {
+  margin-top: 4px;
 }
