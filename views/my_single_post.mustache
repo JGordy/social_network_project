@@ -9,8 +9,8 @@
   <div class="edit_the_post">
     <div class="inside_post">
       <h4 class="post_name">{{#data}}{{User}}{{/data}}</h4>
-      <p class="message">{{#data}}{{message}}{{/data}}</p>
-      <p class="date">{{#data}}{{createdAt}}{{/data}}</p>
+      <p class="message">{{#post}}{{message}}{{/post}}</p>
+      <p class="date">{{#post}}{{createdAt}}{{/post}}</p>
     </div>
     <a href="/remove/{{postId}}"><i class="material-icons delete">delete_forever</i></a>
   </div>

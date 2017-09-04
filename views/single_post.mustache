@@ -8,8 +8,8 @@
 <div class="single_post_page">
   <div class="the_post">
     <h4 class="post_name">{{#userData}}{{#User}}{{name}}{{/User}}{{/userData}}</h4>
-    <p class="message">{{#userData}}{{message}}{{/userData}}</p>
-<p class="date">{{#Posts}}{{createdAt}}{{/Posts}}</p>
+    <p class="message">{{#post}}{{message}}{{/post}}</p>
+    <p class="date">{{#post}}{{createdAt}}{{/post}}</p>
   </div>
   <div class="liked_by">
     <h2>Liked By</h2>

@@ -155,6 +155,7 @@ router.get("/see_post/:userId/:id", isAuthenticated, function(req, res) {
     ]
   })
   .then(function(data) {
+    let post = data
     let postId = data.id
     let dataLikes = data.Likes;
     for (var i = 0; i < dataLikes.length; i++) {
@@ -169,11 +170,10 @@ router.get("/see_post/:userId/:id", isAuthenticated, function(req, res) {
         userData.forEach(function(entry) {
           likedByName.push(entry.name)
         })
-        console.log(postId);
         if (req.params.userId == req.user.id) {
-          res.render("my_single_post", {userData: userData, postId: postId,  data: data, likeNames: likedByName, currentUser: req.user.username});
+          res.render("my_single_post", {userData: userData, post: post, postId: postId,  data: data, likeNames: likedByName, currentUser: req.user.username});
         } else {
-          res.render("single_post", {userData: userData, postId: postId,  data: data, likeNames: likedByName, currentUser: req.user.username});
+          res.render("single_post", {userData: userData, post: post, postId: postId,  data: data, likeNames: likedByName, currentUser: req.user.username});
         }
       })
       .catch(function(err) {
