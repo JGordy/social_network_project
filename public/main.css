@@ -112,7 +112,7 @@ textarea:focus {
   height: 350px;
   justify-content: space-between;
   margin-top: 20px;
-  top: 100px;
+  top: 95px;
   position: -webkit-sticky;
   position: sticky;
   /*display: sticky;

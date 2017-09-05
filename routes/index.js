@@ -1,12 +1,12 @@
 const express = require("express");
-const models = require("../models/index")
+const models = require("../models/index");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
 const passport = require('passport');
 
 const isAuthenticated = function (req, res, next) {
-  console.log(req.isAuthenticated());
+  // console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
       return next()
     }
@@ -79,11 +79,6 @@ router.get("/feed", isAuthenticated, function(req, res) {
     ]
 })
     .then(function(data) {
-      // console.log(data[0].userId);
-      // if (req.user.username === ) {
-      //
-      // }
-
       res.render("feed", {posts: data, currentUser: req.user.username})
     })
     .catch(function(err) {
@@ -93,7 +88,7 @@ router.get("/feed", isAuthenticated, function(req, res) {
 });
 
 router.post("/new_post", isAuthenticated, function(req, res) {
-console.log("Likes.length: ", models.Like.length);
+
   models.Post.create({
     userId: req.user.id,
     message: req.body.message,
