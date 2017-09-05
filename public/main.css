@@ -282,7 +282,6 @@ header {
 ******************************/
 
 .single_post_page {
-  background-color: #fff;
   height: 475px;
   margin: 0px auto;
   padding-top: 150px;
@@ -290,24 +289,37 @@ header {
 }
 
 .edit_the_post {
+  background-color: #fff;
+  border-left: 4px solid #16262B;
+  border-radius: 2px;
   display: flex;
   justify-content: space-between;
+  padding: 0px 0px 10px 10px; 
+}
+
+.the_post {
+  background-color: #fff;
+  border-left: 4px solid #16262B;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px 10px 10px;
 }
 
 .post_name {
   color: #16262B;
   font-family: 'Gloria Hallelujah', cursive;
-  font-size: 24px;
+  font-size: 32px;
 }
 
 .message {
   color: gray;
-  font-size: 32px;
+  font-size: 28px;
 }
 
 .date {
-  color: gray;
-  font-size: 16px;
+  color: #39D79F;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -318,9 +330,16 @@ header {
 }
 
 .liked_by {
-  margin: 30px 0px 20px 0px;
+  background-color: #fff;
+  border-left: 4px solid #39D79F;
+  border-radius: 2px;
+  margin: 20px 0px;
+  padding: 10px;
 }
 
 .liked_by p {
+  color: #39D79F;
+  font-size: 20px;
+  font-style: italic;
   margin-top: 4px;
 }

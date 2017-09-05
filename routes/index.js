@@ -108,27 +108,27 @@ console.log("Likes.length: ", models.Like.length);
 
 
 
-const getPost = function (req, res, next) {
-    models.Post.findOne({
-      where: {id: req.params.id},
-      include: [
-        {model: models.User, as: 'Users'},
-        {model: models.Like, as: 'Likes'}
-      ]
-    })
-    .then(function (data) {
+// const getPost = function (req, res, next) {
+//     models.Post.findOne({
+//       where: {id: req.params.id},
+//       include: [
+//         {model: models.User, as: 'Users'},
+//         {model: models.Like, as: 'Likes'}
+//       ]
+//     })
+//     .then(function (data) {
+//
+//         if (data) {
+//             req.post = data;
+//             next();
+//         } else {
+//             res.status(404).send('Not found.');
+//         }
+//     })
+// };
 
-        if (data) {
-            req.post = data;
-            next();
-        } else {
-            res.status(404).send('Not found.');
-        }
-    })
-};
 
-
-router.get("/like/:id", isAuthenticated, getPost, function(req, res) {
+router.get("/like/:id", isAuthenticated,  function(req, res) {
 
   models.Like.create({
     userId: req.user.id,
@@ -155,8 +155,8 @@ router.get("/see_post/:userId/:id", isAuthenticated, function(req, res) {
     ]
   })
   .then(function(data) {
-    let post = data
-    let postId = data.id
+    let post = data;
+    let postId = data.id;
     let dataLikes = data.Likes;
     for (var i = 0; i < dataLikes.length; i++) {
       likedById.push(data.Likes[i].userId);
@@ -188,7 +188,7 @@ router.get("/see_post/:userId/:id", isAuthenticated, function(req, res) {
 });
 
 router.get("/remove/:postId", isAuthenticated, function(req, res) {
-console.log(req.params.postId);
+// console.log(req.params.postId);
   models.Post.destroy({
     where: {
       id: req.params.postId

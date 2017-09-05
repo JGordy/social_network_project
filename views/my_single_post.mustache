@@ -8,7 +8,7 @@
 <div class="single_post_page">
   <div class="edit_the_post">
     <div class="inside_post">
-      <h4 class="post_name">{{#data}}{{User}}{{/data}}</h4>
+      <h4 class="post_name">{{#post}}{{Users.name}}{{/post}}</h4>
       <p class="message">{{#post}}{{message}}{{/post}}</p>
       <p class="date">{{#post}}{{createdAt}}{{/post}}</p>
     </div>
@@ -16,13 +16,8 @@
   </div>
   <div class="liked_by">
     <h2>Liked By</h2>
-    {{#data}}
-    {{#Likes.name}}
-    {{.}}
-    {{/Likes.name}}
-    {{/data}}
     {{#likeNames}}
-    <p>{{.}}</p>
+    <p class="like_names">{{.}}</p>
     {{/likeNames}}
   </div>
 </div>
