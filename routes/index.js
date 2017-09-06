@@ -183,17 +183,42 @@ router.get("/see_post/:userId/:id", isAuthenticated, function(req, res) {
 });
 
 router.get("/remove/:postId", isAuthenticated, function(req, res) {
-// console.log(req.params.postId);
-  models.Post.destroy({
-    where: {
-      id: req.params.postId
-    }
+
+  models.Like.findAll({
+    where: {postId: req.params.postId}
   })
   .then(function(data) {
-    res.redirect("/feed");
+    models.Like.destroy({
+      where: {postId: req.params.postId}
+    })
+    .then(function(data) {
+      models.Post.findOne({
+        where: {id: req.params.postId}
+      })
+      .then(function(data) {
+        models.Post.destroy({
+          where: {
+            id: req.params.postId
+          }
+        })
+        .then(function(data) {
+          res.redirect("/feed");
+        })
+        .catch(function(err) {
+          res.redirect("/feed");
+        })
+      })
+      .catch(function(err) {
+        res.redirect("/feed");
+      });
+    })
+    .catch(function(err) {
+      res.redirect("/feed");
+    });
+    
   })
   .catch(function(err) {
-    res.redirect("/feed");
+    res.status(500).send(err);
   })
 });
 
