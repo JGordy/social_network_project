@@ -125,12 +125,20 @@ router.post("/new_post", isAuthenticated, function(req, res) {
 
 router.get("/like/:id", isAuthenticated,  function(req, res) {
 
-  models.Like.create({
-    userId: req.user.id,
-    postId: req.params.id
+  models.Like.findOrCreate({
+    where: {
+      userId: req.user.id,
+      postId: req.params.id
+    },
+      defaults: {
+        userId: req.user.id,
+        postId: req.params.id
+      }
   })
   .then(function(data) {
-
+    res.redirect("/feed");
+  })
+  .catch(function(err) {
     res.redirect("/feed");
   })
 });
@@ -215,7 +223,7 @@ router.get("/remove/:postId", isAuthenticated, function(req, res) {
     .catch(function(err) {
       res.redirect("/feed");
     });
-    
+
   })
   .catch(function(err) {
     res.status(500).send(err);
