@@ -95,7 +95,7 @@ textarea:focus {
 }
 
 .main_container {
-  padding-top: 150px;
+  padding-top: 125px;
   display: flex;
   justify-content: center;
   margin-left: auto;
@@ -111,12 +111,10 @@ textarea:focus {
   flex-direction: column;
   height: 350px;
   justify-content: space-between;
-  margin-top: 20px;
-  top: 95px;
+  margin-top: 60px;
+  top: 93px;
   position: -webkit-sticky;
   position: sticky;
-  /*display: sticky;
-  top: 350px;*/
 }
 
 .post_message h3 {
