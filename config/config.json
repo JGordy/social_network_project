@@ -16,7 +16,7 @@
   "production": {
     "username": "josephgordy",
     "password": null,
-    "database": "postgresql-cubed-90022",
+    "database": "postgresql-curly-91423",
     "use_env_variable": "DATABASE_URL",
     "host": "127.0.0.1",
     "dialect": "postgres"
